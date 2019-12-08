@@ -1,0 +1,33 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build
+    image: node
+    commands:
+      - sleep 10
+      - yarn install
+      - yarn start
+    environment:
+      PG_HOST: database
+      PG_USER: postgres
+      PG_DATABASE: postgres
+      PG_PASS: ''
+      PANEL_HOST: localhost
+      PANEL_PORT: 1234
+      API_HOST: localhost
+      API_PORT: 3000
+      BOT_TOKEN: todo
+
+services:
+  - name: database
+    database:
+      image: postgres
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_DB=postgres
+
+trigger:
+  branch:
+    - master
