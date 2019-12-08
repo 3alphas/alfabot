@@ -18,7 +18,8 @@ steps:
       PANEL_PORT: 1234
       API_HOST: localhost
       API_PORT: 3000
-      BOT_TOKEN: todo
+      BOT_TOKEN:
+        from_secret: BOT_TOKEN
 
 services:
   - name: database
